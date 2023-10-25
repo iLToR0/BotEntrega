@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            background-color: #0074b6;
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #container {
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            text-align: center;
+            background-color: #0074b6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Configuración De Estrategia</h1>
+        <form method="post" class="form-group">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="tipoTK">Tipo De Take Profit:</label>
+                {{ form.tipoTK }}
+            </div>
+            <div class="form-group">
+                <label for="valorTK">Valor De Take Profit:</label>
+                {{ form.valorTK }}
+            </div>
+            <div class="form-group">
+                <label for="startHour">Hora de Inicio:</label>
+                {{ form.startHour }}
+            </div>
+            <div class="form-group">
+                <label for="endHour">Hora de Fin:</label>
+                {{ form.endHour }}
+            </div>
+            <div class="form-group">
+                <label for="fechaDesde">Fecha Desde:</label>
+                {{ form.fechaDesde }}
+            </div>
+            <div class="form-group">
+                <label for="fechaHasta">Fecha Hasta:</label>
+                {{ form.fechaHasta }}
+            </div>
+            <button type="button" data-toggle="modal" data-target="#alertModal">Ejecutar BackTesting</button>
+        </form>
+    </div>
+
+    <!-- Modal para mensajes de alerta -->
+    <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="alertModalLabel">Mensaje de Alerta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="alertText"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para mensajes de alerta -->
+<div class="modal fade" id="noDataModal" tabindex="-1" role="dialog" aria-labelledby="noDataModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="noDataModalLabel">Mensaje de Alerta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{ error_message|escapejs }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   
+    {% if error_message %}
+    <script>
+        $(document).ready(function () {
+            $('#noDataModal').modal('show');
+        });
+    </script>
+{% endif %}
+
+</div>
+
+<script>
+    document.querySelector('button[type="button"]').addEventListener('click', function (e) {
+        e.preventDefault(); // Evitar que se envíe el formulario
+
+        var valorTK = parseFloat(document.querySelector('[name="valorTK"]').value);
+        var fechaDesde = new Date(document.querySelector('[name="fechaDesde"]').value);
+        var fechaHasta = new Date(document.querySelector('[name="fechaHasta"]').value);
+        var errorMessage = '';
+
+        if (valorTK < 0) {
+            errorMessage = 'El valor de Take Profit no puede ser negativo. Por favor, ingresa un valor válido.';
+        } else if (fechaDesde > fechaHasta) {
+            errorMessage = 'La fecha de inicio no puede ser mayor que la fecha de fin. Por favor, selecciona fechas válidas.';
+        }
+
+        if (errorMessage !== '') {
+            document.getElementById('alertText').textContent = errorMessage;
+            $('#alertModal').modal('show'); // Mostrar el modal
+        } else {
+            // Si no hay errores, aquí puedes enviar el formulario
+            document.querySelector('form').submit();
+        }
+    });
+</script>
+
+    
+</body>
+</html>
+        
