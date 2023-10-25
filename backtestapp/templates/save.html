@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N&W TRADERS BACKTESTING</title>
+
+    <style>
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            background-color: #0074b6;
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #container {
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            text-align: center;
+            background-color: #0074b6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        #error-message {
+            display: none;
+            background-color: #f44336;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        #close-error {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="container">
+        <h1>Configuración De Estrategia</h1>
+        <form method="post" class="form-group">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="tipoTK">Tipo De Take Profit:</label>
+                {{ form.tipoTK }}
+            </div>
+            <div class="form-group">
+                <label for="valorTK">Valor De Take Profit:</label>
+                {{ form.valorTK }}
+            </div>
+            <div class="form-group">
+                <label for="startHour">Hora de Inicio:</label>
+                {{ form.startHour }}
+            </div>
+            <div class="form-group">
+                <label for ="endHour">Hora de Fin:</label>
+                {{ form.endHour }}
+            </div>
+            <div class="form-group">
+                <label for="fechaDesde">Fecha Desde:</label>
+                {{ form.fechaDesde }}
+            </div>
+            <div class="form-group">
+                <label for="fechaHasta">Fecha Hasta:</label>
+                {{ form.fechaHasta }}
+            </div>
+            <button type="submit">Ejecutar BackTesting</button>
+        </form>
+
+        <div id="error-message">
+            <p>{{ error_message|escapejs }}</p>
+        </div>
+    </div>
+    
+    {% if error_message %}
+    <div id="error-message">
+        <p>{{ error_message|escapejs }}</p>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var errorMessage = document.getElementById('error-message');
+            if (errorMessage) {
+                if (errorMessage.textContent) {
+                    errorMessage.style.display = 'block';
+                }
+            }
+        });
+    </script>
+    {% endif %}
+    <script>
+        var valorTK = parseFloat(document.getElementsByName("valorTK")[0].value);
+        var fechaDesde = new Date(document.getElementsByName("fechaDesde")[0].value);
+        var fechaHasta = new Date(document.getElementsByName("fechaHasta")[0].value);
+        if (valorTK < 0) {
+            var errorMessage = "El valor de valorTK no puede ser negativo. Por favor, ingresa un valor válido.";
+            var errorDiv = document.getElementById('error-message');
+            errorDiv.style.display = 'block';
+            errorDiv.innerHTML = errorMessage;
+        }
+        if (fechaDesde > fechaHasta) {
+            var errorMessage = "La fecha de inicio no puede ser mayor que la fecha de fin. Por favor, selecciona fechas válidas.";
+            var errorDiv = document.getElementById('error-message');
+            errorDiv.style.display = 'block';
+            errorDiv.innerHTML = errorMessage;
+        }
+        var closeErrorButton = document.getElementById('close-error');
+        if (closeErrorButton) {
+            closeErrorButton.addEventListener('click', function () {
+                var errorDiv = document.getElementById('error-message');
+                errorDiv.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>

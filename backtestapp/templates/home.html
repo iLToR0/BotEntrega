@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>N&W TRADERS BACKTESTING</title>
+    
+    <style>
+        /* Estilo de la barra de navegación */
+    
+        p{
+
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 25px;
+        }
+        h1 {
+            font-family: 'Purista SemiBold';
+            text-align: center; /* Ahora centrado */
+            margin-right: 50px;
+        }
+        .navbar {
+            background-color: #0074b6; /* Azul profundo */
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            max-width: 150px; /* Ajusta el tamaño del logotipo */
+            margin-right: 10px; /* Reduzco el espacio para que quepa el título */
+        }
+
+        .navbar-title {
+            flex: 1; /* Para que ocupe el espacio restante y se centre */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* Estilo de los enlaces */
+        .nav-links {
+            display: flex;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+        }
+        
+        /* Contenido principal */
+        .content {
+            max-width: 1000px; /* Ampliado el ancho del contenido principal */
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Mayor sombra */
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 32px;
+            color: #0074b6; /* Azul de enlace */
+            margin-bottom: 20px;
+        }
+
+        .strategy-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .strategy-card {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .strategy-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2); /* Mayor zoom y sombra al pasar el cursor */
+        }
+
+        .strategy-title {
+            font-size: 24px;
+            color: #0074b6; /* Azul de enlace */
+            text-align: center;
+        }
+
+        .strategy-description {
+            font-size: 24px; /* Aumento del tamaño del Tipo 2 */
+            margin-top: 10px;
+            text-align: center; /* Centrado del texto */
+            text-decoration-color: #0074b6;
+        }
+        
+        a.configure-button {
+            text-align: center;
+            margin-top: 20px; /* Espacio superior para el botón */
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="../static/NW-logo.svg" alt="Logo de la Empresa">
+        </div>
+        <div class="navbar-title">
+            <h1>N&W PROFESSIONAL TRADERS</h1>
+            <p></p>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <h2>Elige una estrategia</h2>
+        <div class="strategy-list">
+            <div class="strategy-card">
+                <h3 class="strategy-title">Estrategia "Trampas"</h3>
+                <p class="strategy-description">Tipo 2</p>
+                <a href="input/" class="btn btn-primary configure-button">Configurar Estrategia</a>
+            </div>
+            
+            <!-- Agregar la tarjeta Tipo 3 -->
+            <div class="strategy-card">
+                <h3 class="strategy-title">Estrategia "Trampas"</h3>
+                <p class="strategy-description">Tipo 3 (Proximamente)</p>
+                <a href="#" class="btn btn-primary configure-button">Configurar Estrategia</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
