@@ -184,6 +184,15 @@ def input_page(request):
 
 
             trade_analysis = thestrat.analyzers.misanalisis.get_analysis()
+            drawDown_analysis = thestrat.analyzers.midrawdown.get_analysis()
+
+            lenDrawDown =drawDown_analysis['len'] 
+            drawdown = drawDown_analysis['drawdown']
+            moneydraw = drawDown_analysis['moneydown']
+
+            drawMax = drawDown_analysis['max']['len']
+            drawMaxPerc = drawDown_analysis['max']['drawdown']
+            moneydrowMax = drawDown_analysis['max']['moneydown']
             total_trades = trade_analysis['total']['total']
 
             won_longest = trade_analysis['streak']['won']['longest']
@@ -214,6 +223,15 @@ def input_page(request):
             long_average = trade_analysis['len']['long']['average']
             long_max = trade_analysis['len']['long']['max']
             long_min = trade_analysis['len']['long']['min']
+            pnl = trade_analysis['pnl']['net']['total']
+            pnlWins = trade_analysis['won']['pnl']['total']
+            pnlLosts= trade_analysis['lost']['pnl']['total']
+            pnlLongs = trade_analysis['long']['pnl']['total']
+            pnlShort = trade_analysis['short']['pnl']['total']
+            pnlLongWins = trade_analysis['long']['pnl']['won']['total']
+            pnlLongLosts = trade_analysis['long']['pnl']['lost']['total']
+            pnlShortWins = trade_analysis['short']['pnl']['won']['total']
+            pnlShortLosts = trade_analysis['short']['pnl']['lost']['total']
 
             long_won_total = trade_analysis['len']['long']['won']['total']
             long_won_average = trade_analysis['len']['long']['won']['average']
@@ -248,7 +266,13 @@ def input_page(request):
 
 
             # Redirige a la página de resultados
-            return render(request, 'results.html',{    
+            return render(request, 'results.html',{
+                                                 'lendraw':lenDrawDown,
+                                                 'drawdown':drawdown,
+                                                 'moneydown':moneydraw,
+                                                 'lenMax':drawMax,
+                                                 'drawMax':drawMaxPerc,
+                                                 'moneyMax':moneydrowMax,    
                                                  'totaltrades':total_trades,
                                                  'rachaganadora': won_longest,
                                                  'rachaperdedora': lost_longest,
@@ -296,6 +320,16 @@ def input_page(request):
                                                  'short_lost_average': short_lost_average,
                                                  'short_lost_max': short_lost_max,
                                                  'short_lost_min': short_lost_min,
+                                                 'pnl':pnl,
+                                                 'pnlwins':pnlWins,
+                                                 'pnlLosts':pnlLosts,
+                                                 'pnllong':pnlLongs,
+                                                 'pnlShort':pnlShort,
+                                                 'pnlLongWins':pnlLongWins,
+                                                 'pnlLongLosts':pnlLongLosts,
+                                                 'pnlShortWins':pnlShortWins,
+                                                 'pnlShortLosts':pnlShortLosts,
+
 
 
                                                  
