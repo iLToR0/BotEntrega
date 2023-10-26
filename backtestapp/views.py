@@ -187,11 +187,11 @@ def input_page(request):
             drawDown_analysis = thestrat.analyzers.midrawdown.get_analysis()
 
             lenDrawDown =drawDown_analysis['len'] 
-            drawdown = drawDown_analysis['drawdown']
+            drawdown = round(drawDown_analysis['drawdown'],2)
             moneydraw = drawDown_analysis['moneydown']
 
             drawMax = drawDown_analysis['max']['len']
-            drawMaxPerc = drawDown_analysis['max']['drawdown']
+            drawMaxPerc = round(drawDown_analysis['max']['drawdown'],2)
             moneydrowMax = drawDown_analysis['max']['moneydown']
             total_trades = trade_analysis['total']['total']
 
@@ -208,15 +208,16 @@ def input_page(request):
             shortWins = trade_analysis['short']['won']
             shortLost = trade_analysis['short']['lost']
             recorridoEnOperaciones = trade_analysis['len']['total']
-            promedioVelasOperacion = trade_analysis['len']['average']
+            promedioVelasOperacion = round(trade_analysis['len']['average'],2)
+            
             maxVelasOperacion = trade_analysis['len']['max']
             minVelasOperacion = trade_analysis['len']['min']
             recorridoOperacionesGanadas = trade_analysis['len']['won']['total']
-            promedioVelasOperacionGanadas = trade_analysis['len']['won']['average']
+            promedioVelasOperacionGanadas = round(trade_analysis['len']['won']['average'],2)
             maxVelasOperacionGanadas = trade_analysis['len']['won']['max']
             minVelasOperacionGanadas = trade_analysis['len']['won']['min']
             recorridoOperacionesPerdidas = trade_analysis['len']['lost']['total']
-            promedioVelasOperacionPerdidas = trade_analysis['len']['lost']['average']
+            promedioVelasOperacionPerdidas = round(trade_analysis['len']['lost']['average'],2)
             maxVelasOperacionPerdidas = trade_analysis['len']['lost']['max']
             minVelasOperacionPerdidas = trade_analysis['len']['lost']['min']
             long_total = trade_analysis['len']['long']['total']
@@ -245,7 +246,7 @@ def input_page(request):
 
             # Estadísticas para "short"
             short_total = trade_analysis['len']['short']['total']
-            short_average = trade_analysis['len']['short']['average']
+            short_average = round(trade_analysis['len']['short']['average'],2)
             short_max = trade_analysis['len']['short']['max']
             short_min = trade_analysis['len']['short']['min']
 

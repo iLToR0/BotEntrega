@@ -35,6 +35,11 @@
             top: 10px; /* Ajusta la distancia desde la parte superior */
             left: 10px; /* Ajusta la distancia desde la izquierda */
         }
+        h1{
+            text-align: center;
+            margin-top: 20px;
+            
+        }
     </style>
     <title>Tabla de Backtesting</title>
 </head>
@@ -45,58 +50,58 @@
           <a href="" class="btn btn-primary configure-button">Volver a Configuración</a>
             
             <table class="table table-bordered table-hover table-striped">
-                <h1>Trades Generales</h1>
+                <h1>Trades</h1>
                 <thead>
                     <tr>
-                        <th>Datos</th>
-                        <th>Valores</th>
+                        <th>Name</th>
+                        <th>Value</th>
                     </tr>
                     <tbody>
                        
                         <tr>
-                        <td>Total Trades:</td>
-                        <td>{{totaltrades}}</td>
-                        </tr>
-                        <tr>
-                        <td>Racha Ganadora:</td>
-                        <td>{{rachaganadora}}</td>
-                        </tr>
-                        <tr>
-                        <td>Racha Perdedora:</td>
-                        <td>{{rachaperdedora}}</td>
-                        </tr>
-                        <tr>
-                        <td>Total Ganados:</td>
-                        <td>{{totalganados}}</td>
-                        </tr>
-                        <tr>
-                        <td>Total Perdidos:</td>
-                        <td>{{totalperdidos}}</td>
-                        </tr>
-                        <tr>
-                        <td>Long Total:</td>
-                        <td>{{longTotal}}</td>
-                        </tr>
-                        <tr>
-                        <td>Short Total:</td>
-                        <td>{{shortTotal}}</td>
-                        </tr>
-                        <tr>
-                        <td>Long Wins:</td>
-                        <td>{{longWins}}</td>
-                        </tr>
-                        <tr>
-                        <td>Long Lost:</td>
-                        <td>{{longLost}}</td>
-                        </tr>
-                        <tr>
-                        <td>Short Wins:</td>
-                        <td>{{shortWins}}</td>
-                        </tr>
-                        <tr>
-                        <td>Short Lost:</td>
-                        <td>{{shortLost}}</td>
-                        </tr>
+                            <td>Total:</td>
+                            <td>{{totaltrades}}</td>
+                            </tr>
+                            <tr>
+                            <td>Won streak:</td>
+                            <td>{{rachaganadora}}</td>
+                            </tr>
+                            <tr>
+                            <td>Lost streak:</td>
+                            <td>{{rachaperdedora}}</td>
+                            </tr>
+                            <tr>
+                            <td>Won:</td>
+                            <td>{{totalganados}}</td>
+                            </tr>
+                            <tr>
+                            <td>Lost:</td>
+                            <td>{{totalperdidos}}</td>
+                            </tr>
+                            <tr>
+                            <td>Longs:</td>
+                            <td>{{longTotal}}</td>
+                            </tr>
+                            <tr>
+                            <td>Shorts:</td>
+                            <td>{{shortTotal}}</td>
+                            </tr>
+                            <tr>
+                            <td>Won Longs:</td>
+                            <td>{{longWins}}</td>
+                            </tr>
+                            <tr>
+                            <td>Lost Longs:</td>
+                            <td>{{longLost}}</td>
+                            </tr>
+                            <tr>
+                            <td>Won Shorts:</td>
+                            <td>{{shortWins}}</td>
+                            </tr>
+                            <tr>
+                            <td>Lost Shorts:</td>
+                            <td>{{shortLost}}</td>
+                            </tr>
                     </tbody>
                     </thead>
             </table>
@@ -105,43 +110,43 @@
                 <h1>PNL</h1>
                 <thead>
                     <tr>
-                        <th>Datos</th>
-                        <th>Valores</th>
+                        <th>Name</th>
+                        <th>Value</th>
                     </tr>
                     <tbody>
-                        <td>pnl neto:</td>
+                        <td>Net:</td>
                         <td>{{pnl}}</td>
                         </tr>
                         <tr>
-                        <td>pnl wins:</td>
+                        <td>Won PNL total:</td>
                         <td>{{pnlwins}}</td>
                         </tr>
                         <tr>
-                        <td>pnl Losts:</td>
+                        <td>Lost PNL total:</td>
                         <td>{{pnlLosts}}</td>
                         </tr>
                         <tr>
-                        <td>pnl long:</td>
+                        <td>Longs PNL total:</td>
                         <td>{{pnllong}}</td>
                         </tr>
                         <tr>
-                        <td>pnl short:</td>
+                        <td>Shorts PNL total:</td>
                         <td>{{pnlShort}}</td>
                         </tr>
                         <tr>
-                        <td>pnl ganado longs:</td>
+                        <td>Won longs PNL:</td>
                         <td>{{pnlLongWins}}</td>
                         </tr>
                         <tr>
-                        <td>pnl perdido longs:</td>
+                        <td>Lost longs PNL:</td>
                         <td>{{pnlLongLosts}}</td>
                         </tr>
                         <tr>
-                        <td>pnl ganado shorts:</td>
+                        <td>Won shorts PNL:</td>
                         <td>{{pnlShortWins}}</td>
                         </tr>
                         <tr>
-                        <td>pnl perdido shorts:</td>
+                        <td>Lost shorts PNL:</td>
                         <td>{{pnlShortLosts}}</td>
                         </tr>
                         
@@ -149,26 +154,56 @@
            
             </table>
             <table class="table table-bordered table-hover table-striped">
+                <h1>DrawDown</h1>
                 <thead>
                     <tr>
-                        <th>Datos</th>
-                        <th>Valores</th>
+                        <th>Name</th>
+                        <th>Value</th>
+                    </tr>
+                    <tbody>
+                         <td>DrawDown length:</td>
+            <td>{{lendraw}}</td>
+            </tr>
+            <td>DrawDown %:</td>
+            <td>{{drawdown}}</td>
+            </tr>
+            <td>DrawDown Money $:</td>
+            <td>{{moneydown}}</td>
+            </tr>
+            <td>Max Drawdown length:</td>
+            <td>{{lenMax}}</td>
+            </tr>
+            <td>Max DrawDown %:</td>
+            <td>{{drawMax}}</td>
+            </tr>
+            <td>Max Drawdown Money $:</td>
+            <td>{{moneyMax}}</td>
+            </tr>
+                  
+                    </thead>
+            </table>
+            <table class="table table-bordered table-hover table-striped">
+                <h1>Length (bars in the market)</h1>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Value</th>
                     </tr>
                     <tbody>
                         <tr>
-                            <td>Recorrido en Operaciones:</td>
+                            <td>Total:</td>
                             <td>{{recorridoEnOperaciones}}</td>
                             </tr>
                             <tr>
-                            <td>Promedio Velas por Operación:</td>
+                            <td>Average per Trades:</td>
                             <td>{{promedioVelasOperacion}}</td>
                             </tr>
                             <tr>
-                            <td>Máximo Velas por Operación:</td>
+                            <td>Max per Trades:</td>
                             <td>{{maxvelasOperacion}}</td>
                             </tr>
                             <tr>
-                            <td>Mínimo Velas por Operación:</td>
+                            <td>Min per Trades:</td>
                             <td>{{minvelasOperacion}}</td>
                             </tr>
                     </tbody>
@@ -176,194 +211,105 @@
             </table>
            
             <table class="table table-bordered table-hover table-striped">
+                <h1>Length Target/Stop</h1>
                 <thead>
                     <tr>
-                        <th>Datos</th>
-                        <th>Valores</th>
+                        <th>Name</th>
+                        <th>Value</th>
                     </tr>
                     <tbody>
                         <tr>
-                            <td>Recorrido en Operaciones Ganadas:</td>
+                            <td>Total per Win Trades:</td>
                             <td>{{recorridoOperacionesGanadas}}</td>
                             </tr>
                             <tr>
-                            <td>Promedio Velas por Operación Ganadas:</td>
+                            <td>Average per Win Trades:</td>
                             <td>{{promedioVelasOperacionGanadas}}</td>
                             </tr>
                             <tr>
-                            <td>Máximo Velas por Operación Ganadas:</td>
+                            <td>Max per Win Trades:</td>
                             <td>{{maxvelasOperacionGanadas}}</td>
                             </tr>
                             <tr>
-                            <td>Mínimo Velas por Operación Ganadas:</td>
+                            <td>Min per Win Trades:</td>
                             <td>{{minvelasOperacionGanadas}}</td>
                             </tr>
                             <tr>
-                            <td>Recorrido en Operaciones Perdidas:</td>
+                            <td>Total per Lost Trades:</td>
                             <td>{{recorridoOperacionesPerdidas}}</td>
                             </tr>
                             <tr>
-                            <td>Promedio Velas por Operación Perdidas:</td>
+                            <td>Average per Lost Trades:</td>
                             <td>{{promedioVelasOperacionPerdidas}}</td>
                             </tr>
                             <tr>
-                            <td>Máximo Velas por Operación Perdidas:</td>
+                            <td>Max per Lost Trades:</td>
                             <td>{{maxvelasOperacionPerdidas}}</td>
                             </tr>
                             <tr>
-                            <td>Mínimo Velas por Operación Perdidas:</td>
+                            <td>Min per Lost Trades:</td>
                             <td>{{minvelasOperacionPerdidas}}</td>
                             </tr>
                     </tbody>
                     </thead>
             </table>
             <table class="table table-bordered table-hover table-striped">
+                <h1>Length Longs</h1>
                 <thead>
                     <tr>
-                        <th>Datos</th>
-                        <th>Valores</th>
+                        <th>Name</th>
+                        <th>Value</th>
                     </tr>
                     <tbody>
                       
-                  <tr>
-                    <td>Recorrido Operaciones Long:</td>
-                    <td>{{long_total}}</td>
-                    </tr>
-                    <tr>
-                    <td>Promedio recorrido Operaciones Long:</td>
-                    <td>{{long_average}}</td>
-                    </tr>
-                    <tr>
-                    <td>Maximo recorrido Operacion Long:</td>
-                    <td>{{long_max}}</td>
-                    </tr>
-                    <tr>
-                    <td>Mínimo Velas por Operación Perdidas:</td>
-                    <td>{{long_min}}</td>
-                    </tr>
-                    <tr>
-                    <td>Recorrido operaciones long ganadas:</td>
-                    <td>{{long_won_total}}</td>
-                    </tr>
-                    <tr>
-                    <td>Promedio recorrido Longs ganados:</td>
-                    <td>{{long_won_average}}</td>
-                    </tr>
-                    <tr>
-                    <td>Recorrido Maximo Long ganado:</td>
-                    <td>{{long_won_max}}</td>
-                    </tr>
-                    <tr>
-                    <td>Recorrido minimo long ganado:</td>
-                    <td>{{long_won_min}}</td>
-                    </tr>
-                    <tr>
-                    <td>Recorrido operaciones long perdidas:</td>
-                    <td>{{long_lost_total}}</td>
-                    </tr>
-                    <tr>
-                    <td>Promedio recorrido long perdido:</td>
-                    <td>{{long_lost_average}}</td>
-                    </tr>
-                    <tr>
-                    <td>Maximo recorrido long perdido:</td>
-                    <td>{{long_lost_max}}</td>
-                    </tr>
-                    <tr>
-                    <td>Minimo recorrido long perdido:</td>
-                    <td>{{long_lost_min}}</td>
-                    </tr>
-                    <tr>
+                        <tr>
+                            <td>Total per Long Trades:</td>
+                            <td>{{long_total}}</td>
+                            </tr>
+                            <tr>
+                            <td>Average per Long Trades:</td>
+                            <td>{{long_average}}</td>
+                            </tr>
+                            <tr>
+                            <td>Max per Long Trades:</td>
+                            <td>{{long_max}}</td>
+                            </tr>
+                            <tr>
+                            <td>Min per Long Trades:</td>
+                            <td>{{long_min}}</td>
+                            </tr>
                     </tbody>
                     </thead>
             </table>
             
-            <table class="table table-bordered table-hover table-striped"> <!-- Agrega clases de Bootstrap para dar estilo -->
+            <table class="table table-bordered table-hover table-striped">
+                <h1>Length Shorts</h1>
                 <thead>
                     <tr>
-                        <th>Datos</th>
-                        <th>Valores</th>
+                        <th>Name</th>
+                        <th>Value</th>
                     </tr>
                 </thead>
-               
-                 
-                
-                  <td>Recorrido total operaciones short:</td>
-                  <td>{{short_total}}</td>
-                  </tr>
-                  <tr>
-                  <td>Promedio recorrido operaciones short:</td>
-                  <td>{{short_average}}</td>
-                  </tr>
-                  <tr>
-                  <td>Recorrido Maximo operaciones short:</td>
-                  <td>{{short_max}}</td>
-                  </tr>
-                  <tr>
-                  <td>Recorrido Minimo operaciones short:</td>
-                  <td>{{short_min}}</td>
-                  </tr>
-                  <tr>
-                  <td>Recorrido total short ganado:</td>
-                  <td>{{short_won_total}}</td>
-                  </tr>
-                  <tr>
-                  <td>Promedio recorrido short ganado:</td>
-                  <td>{{short_won_average}}</td>
-                  </tr>
-                  <tr>
-                  <td>Recorrido Maximo short ganado:</td>
-                  <td>{{short_won_max}}</td>
-                  </tr>
-                  <tr>
-                  <td>Recorrido Minimo short ganado:</td>
-                  <td>{{short_won_min}}</td>
-                  </tr>
-                  <tr>
-                  <td>Recorrido total short perdido:</td>
-                  <td>{{short_lost_total}}</td>
-                  </tr>
-                  <tr>
-                  <td>promedio recorrido short perdido:</td>
-                  <td>{{short_lost_average}}</td>
-                  </tr>
-                  <tr>
-                  <td>Maximo recorrido short perdido:</td>
-                  <td>{{short_lost_max}}</td>
-                  </tr>
-                  <tr>
-                  <td>Minimo recorrido short perdido:</td>
-                  <td>{{short_lost_min}}</td>
+                <tbody>
+                    <tr>
+                        <td>Total per Short Trades:</td>
+                        <td>{{short_total}}</td>
+                        </tr>
+                        <tr>
+                        <td>Average per Short Tradest:</td>
+                        <td>{{short_average}}</td>
+                        </tr>
+                        <tr>
+                        <td>Max per Short Trades:</td>
+                        <td>{{short_max}}</td>
+                        </tr>
+                        <tr>
+                        <td>Min per Short Tradest:</td>
+                        <td>{{short_min}}</td>
+                        </tr>
                 </tbody>
             </table>
-            <table class="table table-bordered table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th>Datos</th>
-                        <th>Valores</th>
-                    </tr>
-                    <tbody>
-                        <td>Recorrido DrawDown:</td>
-                        <td>{{lendraw}}</td>
-                        </tr>
-                        <td>DrawDown %:</td>
-                        <td>{{drawdown}}</td>
-                        </tr>
-                        <td>DrawDown Money $:</td>
-                        <td>{{moneydown}}</td>
-                        </tr>
-                        <td>Recorrido DrawDown Maximo:</td>
-                        <td>{{lenMax}}</td>
-                        </tr>
-                        <td>DrawDown Maximo %:</td>
-                        <td>{{drawMax}}</td>
-                        </tr>
-                        <td>DrawDown Money Maximo $:</td>
-                        <td>{{moneyMax}}</td>
-                        </tr>
-                  
-                    </thead>
-            </table>
+            
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
