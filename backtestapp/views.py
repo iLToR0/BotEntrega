@@ -96,6 +96,7 @@ def input_page(request):
 
             # Crear un objeto cerebro de backtrader
             cerebro = bt.Cerebro()
+             # 
            
             print("aca")
             print(tipoTK)
@@ -266,7 +267,7 @@ def input_page(request):
 
             print('total trades:', total_trades)
           
-
+            
 
 
             # Redirige a la página de resultados
