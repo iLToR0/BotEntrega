@@ -131,7 +131,7 @@
             <p>{{ error_message|escapejs }}</p>
         </div>
     </div>
-    
+ 
     </script>
     
     {% if error_message %}
@@ -174,14 +174,7 @@
             errorDiv.style.display = 'block';
             errorDiv.innerHTML = errorMessage;
         }
-        if (fechaDesde > fechaHasta) {
-            var errorMessage = "La fecha de inicio no puede ser mayor que la fecha de fin. Por favor, selecciona fechas válidas.";
-            var errorDiv = document.getElementById('error-message');
-            errorDiv.style.display = 'block';
-            errorDiv.innerHTML = errorMessage;
-        }
-      
-      
+
         var closeErrorButton = document.getElementById('close-error');
         if (closeErrorButton) {
             closeErrorButton.addEventListener('click', function () {

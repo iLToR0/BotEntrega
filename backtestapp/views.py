@@ -8,6 +8,7 @@ import pandas as pd
 from django.http import HttpRequest
 from django.views import View
 from .forms import StrategyParametersForm
+from datetime import timedelta
 
 
 
@@ -133,10 +134,14 @@ def input_page(request):
             
             fecha_desde = fechaDesde
             fecha_hasta = fechaHasta
+            if fecha_desde > fecha_hasta:
+                 error_message = 'La fecha de inicio no puede ser mayor que la fecha de fin. Por favor, selecciona fechas válidas.'
+                 return render(request, 'input_page.html', {'form': form, 'error_message': error_message})
 
-            if no_hay_datos_disponibles(df, fechaDesde, fechaHasta,request) == True:
 
-                error_message = "No hay datos disponibles para las fechas ingresadas. Por favor, cambie las fechas."
+            if no_hay_datos_disponibles(df, fechaDesde, fechaHasta,request):
+
+                error_message = 'No hay datos disponibles para las fechas ingresadas. Por favor, cambie las fechas.'
                 return render(request, 'input_page.html', {'form': form, 'error_message': error_message})
 
             df = df.loc[fecha_desde:fecha_hasta]
