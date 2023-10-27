@@ -102,7 +102,11 @@ def input_page(request):
             def no_hay_datos_disponibles(df, fechaDesde, fechaHasta,request):
                 fechaDesde = pd.to_datetime(fechaDesde)
                 fechaHasta = pd.to_datetime(fechaHasta)
-                return false
+                datos_en_rango = df[(df.index >= fechaDesde) & (df.index <= fechaHasta)]
+                if datos_en_rango.empty:
+                    return True
+                else:
+                    return False
                 
             def fechaIgual (fechaDesde, fechaHasta,request):
                 fechaDesde = pd.to_datetime(fechaDesde)
@@ -138,13 +142,14 @@ def input_page(request):
             fecha_desde = fechaDesde
             fecha_hasta = fechaHasta
 
+            df = df.loc[fecha_desde:fecha_hasta]
+
             if no_hay_datos_disponibles(df, fechaDesde, fechaHasta,request) == True:
 
                 error_message = "No hay datos disponibles para las fechas ingresadas. Por favor, cambie las fechas."
                 return render(request, 'input_page.html', {'form': form, 'error_message': error_message})
 
-            df = df.loc[fecha_desde:fecha_hasta]
-
+            #df = df[::-1]
             # Convertir las columnas numéricas a tipo float
             df['open'] = df['open'].astype(float)
             df['high'] = df['high'].astype(float)
