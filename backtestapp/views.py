@@ -95,18 +95,13 @@ def input_page(request):
 
             # Crear un objeto cerebro de backtrader
             cerebro = bt.Cerebro()
-           
-            print("aca")
-            print(tipoTK)
+        
 
             def no_hay_datos_disponibles(df, fechaDesde, fechaHasta,request):
                 fechaDesde = pd.to_datetime(fechaDesde)
                 fechaHasta = pd.to_datetime(fechaHasta)
-                datos_en_rango = df[(df.index >= fechaDesde) & (df.index <= fechaHasta)]
-                if datos_en_rango.empty:
-                    return True
-                else:
-                    return False
+                return ((df.index.min() >= fechaDesde) or (df.index.max() <= fechaHasta))
+
                 
             def fechaIgual (fechaDesde, fechaHasta,request):
                 fechaDesde = pd.to_datetime(fechaDesde)
@@ -139,17 +134,17 @@ def input_page(request):
             df = df.sort_index()
             
             
+            
             fecha_desde = fechaDesde
             fecha_hasta = fechaHasta
 
-            df = df.loc[fecha_desde:fecha_hasta]
+            if no_hay_datos_disponibles(df, fechaDesde, fechaHasta, request) == True:
 
-            if no_hay_datos_disponibles(df, fechaDesde, fechaHasta,request) == True:
-
-                error_message = "No hay datos disponibles para las fechas ingresadas. Por favor, cambie las fechas."
+                error_message = "No hay datos disponibles para las fechas ingresadas. Por favor, cambie las fechas. ("+ df.index.min() + "-" + df.index.max() + ")"
                 return render(request, 'input_page.html', {'form': form, 'error_message': error_message})
 
-            #df = df[::-1]
+            df = df.loc[fecha_desde:fecha_hasta]
+
             # Convertir las columnas numéricas a tipo float
             df['open'] = df['open'].astype(float)
             df['high'] = df['high'].astype(float)
@@ -162,12 +157,7 @@ def input_page(request):
             cerebro.adddata(data_feed)
 
 
-          
-            if tipoTK == 'P':
-                cerebro.addstrategy(ThreeCandlePatternStrategy, tipoTK, ValorTK, StartHour, EndHour)
-                
-            elif tipoTK == 'R':
-                cerebro.addstrategy(ThreeCandlePatternStrategy,  tipoTK, ValorTK, StartHour, EndHour)
+            cerebro.addstrategy(ThreeCandlePatternStrategy,  tipoTK, ValorTK, StartHour, EndHour)
 
             cerebro.addsizer(bt.sizers.FixedSize, stake=20)
             broker = bt.brokers.BrokerBack(checksubmit=False)
