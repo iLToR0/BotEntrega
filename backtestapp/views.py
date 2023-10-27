@@ -108,6 +108,19 @@ def input_page(request):
                 else:
                     return False
                 
+            def fechaIgual (fechaDesde, fechaHasta,request):
+                fechaDesde = pd.to_datetime(fechaDesde)
+                fechaHasta = pd.to_datetime(fechaHasta)
+                if fechaDesde == fechaHasta:
+                    return True
+                else:
+                    return False
+
+            if fechaIgual(fechaDesde, fechaHasta,request) == True:
+                errorFechaIgual = "Las fechas no pueden ser iguales. Por favor, cambie las fechas."
+                return render(request, 'input_page.html', {'form': form, 'error_message': errorFechaIgual})
+
+        
             
 
 

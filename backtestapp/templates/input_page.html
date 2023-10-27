@@ -126,15 +126,32 @@
             </div>
             <button type="submit">Ejecutar BackTesting</button>
         </form>
-
+        
         <div id="error-message">
             <p>{{ error_message|escapejs }}</p>
         </div>
     </div>
     
+    </script>
+    
     {% if error_message %}
     <div id="error-message">
         <p>{{ error_message|escapejs }}</p>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var errorMessage = document.getElementById('error-message');
+            if (errorMessage) {
+                if (errorMessage.textContent) {
+                    errorMessage.style.display = 'block';
+                }
+            }
+        });
+    </script>
+    {% endif %}
+    {% if error_message %}
+    <div id="error-message">
+        <p>{{ errorFechaIgual|escapejs }}</p>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -163,6 +180,8 @@
             errorDiv.style.display = 'block';
             errorDiv.innerHTML = errorMessage;
         }
+      
+      
         var closeErrorButton = document.getElementById('close-error');
         if (closeErrorButton) {
             closeErrorButton.addEventListener('click', function () {
