@@ -95,13 +95,14 @@ def input_page(request):
 
             # Crear un objeto cerebro de backtrader
             cerebro = bt.Cerebro()
-        
+           
+            print("aca")
+            print(tipoTK)
 
             def no_hay_datos_disponibles(df, fechaDesde, fechaHasta,request):
                 fechaDesde = pd.to_datetime(fechaDesde)
                 fechaHasta = pd.to_datetime(fechaHasta)
                 return false
-
                 
             def fechaIgual (fechaDesde, fechaHasta,request):
                 fechaDesde = pd.to_datetime(fechaDesde)
@@ -134,11 +135,10 @@ def input_page(request):
             df = df.sort_index()
             
             
-            
             fecha_desde = fechaDesde
             fecha_hasta = fechaHasta
 
-            if no_hay_datos_disponibles(df, fechaDesde, fechaHasta, request) == True:
+            if no_hay_datos_disponibles(df, fechaDesde, fechaHasta,request) == True:
 
                 error_message = "No hay datos disponibles para las fechas ingresadas. Por favor, cambie las fechas."
                 return render(request, 'input_page.html', {'form': form, 'error_message': error_message})
@@ -157,9 +157,10 @@ def input_page(request):
             cerebro.adddata(data_feed)
 
 
-                        if tipoTK == 'P':
+          
+            if tipoTK == 'P':
                 cerebro.addstrategy(ThreeCandlePatternStrategy, tipoTK, ValorTK, StartHour, EndHour)
-
+                
             elif tipoTK == 'R':
                 cerebro.addstrategy(ThreeCandlePatternStrategy,  tipoTK, ValorTK, StartHour, EndHour)
 
@@ -355,4 +356,3 @@ def input_page(request):
 
 def home(request):
       return render(request, 'home.html')
-
