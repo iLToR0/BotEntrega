@@ -102,7 +102,7 @@ def input_page(request):
             def no_hay_datos_disponibles(df, fechaDesde, fechaHasta,request):
                 fechaDesde = pd.to_datetime(fechaDesde)
                 fechaHasta = pd.to_datetime(fechaHasta)
-                return False
+                return ((df.index.min() >= fechaDesde) or (df.index.max() <= fechaHasta))
                 
             def fechaIgual (fechaDesde, fechaHasta,request):
                 fechaDesde = pd.to_datetime(fechaDesde)
