@@ -157,7 +157,11 @@ def input_page(request):
             cerebro.adddata(data_feed)
 
 
-            cerebro.addstrategy(ThreeCandlePatternStrategy,  tipoTK, ValorTK, StartHour, EndHour)
+                        if tipoTK == 'P':
+                cerebro.addstrategy(ThreeCandlePatternStrategy, tipoTK, ValorTK, StartHour, EndHour)
+
+            elif tipoTK == 'R':
+                cerebro.addstrategy(ThreeCandlePatternStrategy,  tipoTK, ValorTK, StartHour, EndHour)
 
             cerebro.addsizer(bt.sizers.FixedSize, stake=20)
             broker = bt.brokers.BrokerBack(checksubmit=False)
