@@ -100,7 +100,7 @@ def input_page(request):
             def no_hay_datos_disponibles(df, fechaDesde, fechaHasta,request):
                 fechaDesde = pd.to_datetime(fechaDesde)
                 fechaHasta = pd.to_datetime(fechaHasta)
-                return ((df.index.min() >= fechaDesde) or (df.index.max() <= fechaHasta))
+                return false
 
                 
             def fechaIgual (fechaDesde, fechaHasta,request):
@@ -140,7 +140,7 @@ def input_page(request):
 
             if no_hay_datos_disponibles(df, fechaDesde, fechaHasta, request) == True:
 
-                error_message = "No hay datos disponibles para las fechas ingresadas. Por favor, cambie las fechas. ("+ df.index.min() + "-" + df.index.max() + ")"
+                error_message = "No hay datos disponibles para las fechas ingresadas. Por favor, cambie las fechas."
                 return render(request, 'input_page.html', {'form': form, 'error_message': error_message})
 
             df = df.loc[fecha_desde:fecha_hasta]
