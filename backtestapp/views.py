@@ -96,10 +96,6 @@ def input_page(request):
 
             # Crear un objeto cerebro de backtrader
             cerebro = bt.Cerebro()
-             # 
-           
-            print("aca")
-            print(tipoTK)
 
             def no_hay_datos_disponibles(df, fechaDesde, fechaHasta,request):
                 fechaDesde = pd.to_datetime(fechaDesde)
