@@ -115,8 +115,8 @@ def input_page(request):
                     return False
 
             if fechaIgual(fechaDesde, fechaHasta,request) == True:
-                errorFechaIgual = "Las fechas no pueden ser iguales. Por favor, cambie las fechas."
-                return render(request, 'input_page.html', {'form': form, 'error_message': errorFechaIgual})
+                error_message = "Las fechas no pueden ser iguales. Por favor, cambie las fechas."
+                return render(request, 'input_page.html', {'form': form, 'error_message': error_message})
 
             archivo_csv = 'dataKitInicial.csv'
 
@@ -135,6 +135,7 @@ def input_page(request):
             
             fecha_desde = fechaDesde
             fecha_hasta = fechaHasta
+
             if fecha_desde > fecha_hasta:
                  error_message = 'La fecha de inicio no puede ser mayor que la fecha de fin. Por favor, selecciona fechas válidas.'
                  return render(request, 'input_page.html', {'form': form, 'error_message': error_message})
@@ -144,9 +145,13 @@ def input_page(request):
 
                 error_message = 'No hay datos disponibles para las fechas ingresadas. Por favor, cambie las fechas.'
                 return render(request, 'input_page.html', {'form': form, 'error_message': error_message})
+            
+            if ValorTK < 0:
+                 error_message = 'El valor de valorTK no puede ser negativo. Por favor, ingresa un valor válido.'
+                 return render(request, 'input_page.html', {'form': form, 'error_message': error_message})
 
             df = df.loc[fecha_desde:fecha_hasta]
-
+            
             # Convertir las columnas numéricas a tipo float
             df['open'] = df['open'].astype(float)
             df['high'] = df['high'].astype(float)

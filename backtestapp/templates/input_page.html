@@ -1,140 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static '../static/css/styles.css' %}">
+    <script src="{% static '../static/javascript/input_page.js' %}"></script>
     <title>N&W TRADERS BACKTESTING</title>
 
-    <style>
-        h1 {
-            text-align: center;
-            font-size: 36px;
-            background-color: #0074b6;
-            color: white;
-            padding: 20px;
-            border-radius: 20px;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        #container {
-            max-width: 600px;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            
-        }
-        
-
-        label {
-            display: block;
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        input[type="date"],
-        select {
-            width: calc(100% - 20px); 
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        button {
-            text-align: center;
-            background-color: #0074b6;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px;
-            align-items: center;
-        }
-        
-        .home-button {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: #0074b6;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        #error-message {
-            display: none;
-            background-color: #f44336;
-            color: white;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        #close-error {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7); /* Fondo difuminado */
-            z-index: 1; /* Asegura que esté en la parte superior */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Estilo del loader */
-        .loader {
-            border: 8px solid #0074b6; /* Cambia el color a azul */
-            border-top: 8px solid #f3f3f3; /* Cambia el otro color si lo deseas */
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 2s linear infinite;
-        }
-
-        /* Agrega la animación de giro (spin) */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-       
-    </style>
 </head>
+
 <body>
     <a href="/" class="home-button">Volver al Home</a>
-    
+
     <div id="container" class="container">
         <h1>Configuración De Estrategia</h1>
-        <form method="post" class="form-group"  id="backtesting-form">
+        <form method="post" class="form-group" id="backtesting-form">
             {% csrf_token %}
             <div class="form-group">
                 <label for="tipoTK">Tipo De Take Profit:</label>
@@ -145,98 +27,38 @@
                 {{ form.valorTK }}
             </div>
             <div class="form-group">
-                <label for="startHour">Hora de Inicio:  HH:MM</label>
+                <label for="startHour">Hora de Inicio: HH:MM</label>
                 {{ form.startHour }}
             </div>
             <div class="form-group">
-                <label for ="endHour">Hora de Fin:  HH:MM</label>
+                <label for="endHour">Hora de Fin: HH:MM</label>
                 {{ form.endHour }}
             </div>
             <div class="form-group">
-                <label for="fechaDesde">Fecha Desde:  2023-05-01</label>
+                <label for="fechaDesde">Fecha Desde: 2023-05-01</label>
                 {{ form.fechaDesde }}
             </div>
             <div class="form-group">
-                <label for="fechaHasta">Fecha Hasta:  2023-09-30</label>
+                <label for="fechaHasta">Fecha Hasta: 2023-09-30</label>
                 {{ form.fechaHasta }}
             </div>
-            
+            <div class="form-group">
                 <button type="submit" id="execute-button" class="btn btn-primary">Ejecutar BackTesting</button>
-  
+            </div>
+
         </form>
-        <!-- Agrega el elemento div para el mensaje de procesamiento -->
+        
         <div class="overlay" id="processing-message" style="display: none;">
             <div class="loader"></div>
             <p class="processing-text" style="color: #fff;">Procesando BackTesting, por favor espera...</p>
         </div>
-    </div>
-        
-        <div id="error-message">
-            <p>{{ error_message|escapejs }}</p>
-        </div>
-    </div>
- 
-    </script>
-    
-    {% if error_message %}
-    <div id="error-message">
-        <p>{{ error_message|escapejs }}</p>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var errorMessage = document.getElementById('error-message');
-            if (errorMessage) {
-                if (errorMessage.textContent) {
-                    errorMessage.style.display = 'block';
-                }
-            }
-        });
-    </script>
-    {% endif %}
-    {% if error_message %}
-    <div id="error-message">
-        <p>{{ errorFechaIgual|escapejs }}</p>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var errorMessage = document.getElementById('error-message');
-            if (errorMessage) {
-                if (errorMessage.textContent) {
-                    errorMessage.style.display = 'block';
-                }
-            }
-        });
-    </script>
-    {% endif %}
-    <script>
-        var valorTK = parseFloat(document.getElementsByName("valorTK")[0].value);
-        var fechaDesde = new Date(document.getElementsByName("fechaDesde")[0].value);
-        var fechaHasta = new Date(document.getElementsByName("fechaHasta")[0].value);
-        if (valorTK < 0) {
-            var errorMessage = "El valor de valorTK no puede ser negativo. Por favor, ingresa un valor válido.";
-            var errorDiv = document.getElementById('error-message');
-            errorDiv.style.display = 'block';
-            errorDiv.innerHTML = errorMessage;
-        }
-        document.addEventListener('DOMContentLoaded', function () {
-            var executeButton = document.getElementById('execute-button');
-            var processingMessage = document.getElementById('processing-message');
-            var processingText = document.getElementById('processing-text');
 
-            
-                executeButton.addEventListener('click', function () {
-                   
-                    processingMessage.style.display = 'flex';  // Mostrar el mensaje de procesamiento
-            });
-        });
+        <div id="error-message">{{ error_message }}</div>
 
-        var closeErrorButton = document.getElementById('close-error');
-        if (closeErrorButton) {
-            closeErrorButton.addEventListener('click', function () {
-                var errorDiv = document.getElementById('error-message');
-                errorDiv.style.display = 'none';
-            });
-        }
-    </script>
+    </div>
+    <script src="{% static '../static/javascript/script.js' %}"></script>
+
+
 </body>
+
 </html>
