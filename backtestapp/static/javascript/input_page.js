@@ -2,11 +2,11 @@ document.addEventListener('DOMContentLoaded', function () {
     let form = document.getElementById('backtesting-form');
 
     form.addEventListener('submit', function (event) {
-        let fechaDesde = new Date(document.getElementById('id_fechaDesde').value);
-        let fechaHasta = new Date(document.getElementById('id_fechaHasta').value);
+        let fechaDesde = new Date(document.getElementById('id_fechaDesde').value + 'T00:00:00').getTime();
+        let fechaHasta = new Date(document.getElementById('id_fechaHasta').value + 'T00:00:00').getTime();
         let valorTK = parseFloat(document.getElementById('id_valorTK').value);
-        let minDate = new Date('2023-05-01');
-        let maxDate = new Date('2023-09-30');
+        let minDate = new Date('2023-05-01' + 'T00:00:00').getTime();
+        let maxDate = new Date('2023-09-30' + 'T00:00:00').getTime();
         let processingMessage = document.getElementById('processing-message');
 
         dataValidate(fechaDesde, fechaHasta, valorTK, minDate, maxDate, processingMessage);
@@ -25,7 +25,7 @@ function dataValidate(fechaDesde, fechaHasta, valorTK, minDate, maxDate, process
     if (fechaDesde === fechaHasta) {
         event.preventDefault();
         showError('Las fechas no pueden ser iguales. Por favor, cambie las fechas.');
-    } else if (fechaDesde > fechaHasta) {
+    } else if (fechaDesde> fechaHasta) {
         event.preventDefault();
         showError('La fecha de inicio no puede ser mayor que la fecha de fin. Por favor, selecciona fechas válidas.');
     } else if (fechaDesde < minDate || fechaHasta > maxDate) {
