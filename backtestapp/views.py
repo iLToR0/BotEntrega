@@ -1,19 +1,8 @@
-from django.contrib import messages
-from django.shortcuts import redirect, render
-from django.http import HttpResponse,JsonResponse
-import backtrader as bt
+from django.shortcuts import render
 from backtestapp.services.BackTestManager import BacktestManager
-
-from backtestapp.services.DataService import DataService
 from .strategy import ThreeCandlePatternStrategy
 from .models import *
-import pandas as pd
-from django.http import HttpRequest
-from django.views import View
 from .forms import StrategyParametersForm
-from datetime import timedelta
-
-
 
 
 def input_page(request):
