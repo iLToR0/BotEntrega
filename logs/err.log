@@ -1,0 +1,97 @@
+[02/Nov/2023 02:05:44] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 02:06:07] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:06:10] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 02:06:10] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:06:17] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:06:19] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 02:06:24] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:06:28] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 02:06:35] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:06:38] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 02:06:39] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:06:43] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:06:51] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:06:55] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:06:59] "GET /favicon.ico HTTP/1.1" 404 179
+[02/Nov/2023 02:07:08] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 02:08:04] "POST /input/ HTTP/1.1" 200 11211
+[02/Nov/2023 02:08:27] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 02:08:30] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:08:34] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:08:37] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:11:44] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:11:47] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:24:25] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 02:25:27] "POST /input/ HTTP/1.1" 200 11210
+[02/Nov/2023 02:27:28] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 02:27:32] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 02:28:12] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:28:29] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 02:28:33] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:28:45] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 02:28:50] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:28:52] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 02:28:53] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:43:30] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 02:43:32] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 02:47:49] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 02:50:57] "POST /input/ HTTP/1.1" 200 11147
+[02/Nov/2023 02:54:07] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 03:08:42] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 03:14:37] code 400, message Bad request version ('\x81¿)l}\x00\x90¥¨3ôr\x84q\x07\x1b¹ÔÀ]³tVE\x84\x98Unn\x95j-ZÀÿ')
+[02/Nov/2023 03:14:37] You're accessing the development server over HTTPS, but it only supports HTTP.
+[02/Nov/2023 03:14:38] code 400, message Bad request version ('I')
+[02/Nov/2023 03:14:38] You're accessing the development server over HTTPS, but it only supports HTTP.
+[02/Nov/2023 03:14:38] code 400, message Bad request version ('\x93\x87\x8a\x840')
+[02/Nov/2023 03:14:38] You're accessing the development server over HTTPS, but it only supports HTTP.
+[02/Nov/2023 03:14:38] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 03:14:39] code 400, message Bad request version ('\x8a\x8a\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x01\x93ZZ\x00\x00\x00')
+[02/Nov/2023 03:14:39] You're accessing the development server over HTTPS, but it only supports HTTP.
+[02/Nov/2023 03:14:40] "GET /favicon.ico HTTP/1.1" 404 179
+[02/Nov/2023 03:14:50] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 03:14:51] "GET /static/css/styles.5e5728ab30e5.css HTTP/1.1" 200 842
+[02/Nov/2023 03:14:51] "GET /static/javascript/input_page.cb5d70e08fa0.js HTTP/1.1" 200 606
+[02/Nov/2023 03:15:37] "POST /input/ HTTP/1.1" 200 11147
+[02/Nov/2023 03:15:40] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 03:15:41] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 03:15:50] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 03:16:08] "POST /input/ HTTP/1.1" 200 11147
+[02/Nov/2023 03:16:30] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 03:18:22,049] - Broken pipe from ('190.245.237.49', 44370)
+[02/Nov/2023 03:18:22,051] - Broken pipe from ('190.245.237.49', 44374)
+[02/Nov/2023 04:08:15] "POST /input/ HTTP/1.1" 200 11147
+[02/Nov/2023 04:08:22] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 04:54:41] "POST /input/ HTTP/1.1" 200 11212
+[02/Nov/2023 05:41:47,749] - Broken pipe from ('162.142.125.223', 33398)
+[02/Nov/2023 05:41:48] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 05:41:48,845] - Broken pipe from ('162.142.125.223', 51100)
+[02/Nov/2023 05:41:48] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 05:41:49] code 505, message Invalid HTTP version (2.0)
+[02/Nov/2023 05:41:49] "PRI * HTTP/2.0" 505 -
+[02/Nov/2023 05:41:49] "GET /favicon.ico HTTP/1.1" 404 179
+[02/Nov/2023 12:13:18] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 12:13:19] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 12:13:20] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 12:13:24] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 12:54:06] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 12:54:11] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 12:55:26] "POST /input/ HTTP/1.1" 200 11221
+[02/Nov/2023 12:55:53] "GET /input/ HTTP/1.1" 200 2564
+[02/Nov/2023 17:04:57,778] - Broken pipe from ('167.94.138.52', 53544)
+[02/Nov/2023 17:04:58] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 17:04:58,924] - Broken pipe from ('167.94.138.52', 45454)
+[02/Nov/2023 17:04:58] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 17:04:59] code 505, message Invalid HTTP version (2.0)
+[02/Nov/2023 17:04:59] "PRI * HTTP/2.0" 505 -
+[02/Nov/2023 17:04:59] "GET /favicon.ico HTTP/1.1" 404 179
+[02/Nov/2023 19:29:41] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 19:29:42] code 400, message Bad request version ('HTTP')
+[02/Nov/2023 19:29:42] "GET ../../proc/ HTTP" 400 -
+[02/Nov/2023 20:29:14] "GET /favicon.ico HTTP/1.1" 404 179
+[02/Nov/2023 20:44:05,073] - Broken pipe from ('167.94.146.51', 60820)
+[02/Nov/2023 20:44:06] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 20:44:06,365] - Broken pipe from ('167.94.146.51', 38546)
+[02/Nov/2023 20:44:06] "GET / HTTP/1.1" 200 4648
+[02/Nov/2023 20:44:06] code 505, message Invalid HTTP version (2.0)
+[02/Nov/2023 20:44:06] "PRI * HTTP/2.0" 505 -
+[02/Nov/2023 20:44:07] "GET /favicon.ico HTTP/1.1" 404 179
