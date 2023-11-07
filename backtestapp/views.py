@@ -3,8 +3,7 @@ from backtestapp.services.BackTestManager import BacktestManager
 from .strategy import ThreeCandlePatternStrategy
 from .models import *
 from .forms import StrategyParametersForm
-
-
+from django.template import RequestContext
 def input_page(request):
     if request.method == 'POST':
         form = StrategyParametersForm(request.POST)
