@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
     let form = document.getElementById('backtesting-form');
 
@@ -33,7 +34,7 @@ function dataValidate(fechaDesde, fechaHasta, valorTK, minDate, maxDate, process
         showError('No hay datos disponibles para las fechas ingresadas. Por favor, cambie las fechas.');
     } else if (valorTK <= 0) {
         event.preventDefault();
-        showError('El valor de valorTK no puede ser negativo. Por favor, ingresa un valor válido.');
+        showError('El valor de valorTK debe ser mayor a cero. Por favor, ingresa un valor válido.');
     } else {
         processingMessage.style.display = 'flex';
     }
