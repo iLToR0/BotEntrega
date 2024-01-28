@@ -10,6 +10,7 @@ from .MauriStrategy import MauricioStrategy
 from datetime import datetime
 import backtrader as bt
 import pandas as pd
+import os
 
 
 def input_page(request):
@@ -18,6 +19,7 @@ def input_page(request):
         if form.is_valid():
             
             archivo_csv = 'dataKitInicial.csv'
+            
             strategy = ThreeCandlePatternStrategy
 
             backtest_manager = BacktestManager(form, archivo_csv, strategy)
@@ -33,14 +35,18 @@ def input_page2(request):
     if request.method == 'POST':
         form = StrategyParameters2Form(request.POST)
         if form.is_valid():
-            indicatorResults = 'results.csv'
-            archivo_csv = '132Fin.csv'
+            #archivo_csv = os.path.abspath('132Fin.csv')
+            #indicatorResults = os.path.abspath('results.csv')
+            #print("Length of:", len(archivo_csv))
+            
+            
+
             
             #print("Longitud de los datos leídos:", len(archivo_csv))
             #print("Longitud de los datos leídos:", len(indicatorResults))
             strategy = MauricioStrategy
 
-            backtest_manager = BacktestManager2(form, archivo_csv, strategy,  indicatorResults)
+            backtest_manager = BacktestManager2(form, strategy)
             
             results = backtest_manager.run_backtest()
             return render(request, 'results2.html',results)

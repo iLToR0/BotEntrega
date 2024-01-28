@@ -1,15 +1,14 @@
 import backtrader as bt
 from backtestapp.services.BackTestAnalyzer import BacktestAnalyzer
-from backtestapp.services.DataManager import DataManager
-from backtestapp.services.datamanger2 import DataManager2
+import pandas as pd
 
 
 
 class BacktestManager2:
 
-    def __init__(self, form, archivo_csv, strategy, indicatorResults):
-        self.archivo_csv = archivo_csv
-        self.indicatorResults = indicatorResults
+    def __init__(self, form, strategy):
+        #self.archivo_csv = archivo_csv
+        #self.indicatorResults = indicatorResults
         self.strategy = strategy
         
         self.get_formFields(form)
@@ -19,9 +18,10 @@ class BacktestManager2:
 
         cerebro = bt.Cerebro()
 
-        dataManager = DataManager2(self.archivo_csv,self.indicatorResults)
-        data_feed = self._get_data_feed(dataManager)
-        indicatorResultsDF = self._get_data_feed(dataManager)
+        
+        data_feed = self._get_data_feed(fecha_desde=self.fechaDesde, fecha_hasta=self.fechaHasta, time_frame=bt.TimeFrame.Minutes)
+        indicatorResultsDF = self._get_indicator_DF()
+
         cerebro.adddata(data_feed)
 
         self.add_strategy(self.strategy, cerebro,indicatorResultsDF)
@@ -40,15 +40,44 @@ class BacktestManager2:
         
         return results
 
-    def _get_data_feed(self, dataManager):
+    def _get_data_feed(self, fecha_desde,fecha_hasta,time_frame):
+        archivoCSV = '132Fin.csv'
+        df = pd.read_csv(archivoCSV, sep=';', header=None, names=['datetime', 'open', 'high', 'low', 'close', 'volume'],skip_blank_lines=True,
+                             )
+        df = df.dropna()
         
-        data_feed = dataManager.get_data(self.fechaDesde, self.fechaHasta, bt.TimeFrame.Minutes)
+        # Añadir milisegundos a la columna 'datetime'
+        df['datetime'] = pd.to_datetime(df['datetime'], format='%Y%m%d %H%M%S')
+
+        # Establecer la columna 'datetime' como índice de tiempo
+        df.set_index('datetime', inplace=True)
+
+        df.index = pd.to_datetime(df.index)
+        df = df.sort_index()
+        print("longtidu de data:", len(df))
+
+        df = df.loc[fecha_desde:fecha_hasta]
+        
+        # Convertir las columnas numéricas a tipo float
+        df['open'] = df['open'].astype(float)
+        df['high'] = df['high'].astype(float)
+        df['low'] = df['low'].astype(float)
+        df['close'] = df['close'].astype(float)
+        df['volume'] = df['volume'].astype(float)
+
+        data_feed = bt.feeds.PandasData(dataname=df, timeframe=time_frame)
+        
+
         return data_feed
+        
 
-    def _get_indicator_DF(self, dataManager):
-
-        indicatorDF = dataManager.get_Indicator()
-        return indicatorDF
+    def _get_indicator_DF(self):
+        resultados = 'results.csv'
+        indicatorResults = pd.read_csv(resultados, sep=',', header=None, names=[
+                        'datetime', 'fundtrend', 'bullbearline', 'bankerentry', 'color'])
+        
+        indicatorResults['datetime'] = pd.to_datetime(indicatorResults['datetime'], format="%Y%m%d %H%M%S")
+        return indicatorResults
 
     def add_strategy(self, strategy, cerebro,indicatorResults):
         # Crear una estrategia personalizada basada en los valores del formulario
