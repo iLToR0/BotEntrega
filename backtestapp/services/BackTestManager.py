@@ -50,6 +50,7 @@ class BacktestManager:
         # Configurar el broker
         broker = bt.brokers.BrokerBack(checksubmit=False)
         broker.setcommission(commission=0.125, margin=1)
+        cerebro.addsizer(bt.sizers.FixedSize, stake=20)
         broker.setcash(100000.00)
         cerebro.setbroker(broker)
 
