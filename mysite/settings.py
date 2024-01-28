@@ -23,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
-ALLOWED_HOSTS = ['nwbacktesting.com', 'www.nwbacktesting.com']
+ALLOWED_HOSTS = ['127.0.0.1','nwbacktesting.com', 'www.nwbacktesting.com']
 SESSION_COOKIE_DOMAIN = '.nwbacktesting.com'
 CORS_ALLOWED_ORIGINS = ['https://nwbacktesting.com']
 CSRF_TRUSTED_ORIGINS = [
