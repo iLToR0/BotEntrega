@@ -32,7 +32,7 @@ function dataValidate(fechaDesde, fechaHasta, valorTK, minDate, maxDate, process
     } else if (fechaDesde < minDate || fechaHasta > maxDate) {
         event.preventDefault();
         showError('No hay datos disponibles para las fechas ingresadas. Por favor, cambie las fechas.');
-    } else if (valorTK <= 0) {
+    } else if (valorTK <= 0 || valorTK === 0) {
         event.preventDefault();
         showError('El valor de valorTK debe ser mayor a cero. Por favor, ingresa un valor válido.');
     } else {

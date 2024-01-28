@@ -1,5 +1,5 @@
 from django import forms
-from .models import StrategyParameters
+from .models import StrategyParameters,StrategyParameters2
 
 class StrategyParametersForm(forms.ModelForm):
     class Meta:
@@ -9,3 +9,14 @@ class StrategyParametersForm(forms.ModelForm):
             'fechaDesde': forms.DateInput(attrs={'type': 'date'}),
             'fechaHasta': forms.DateInput(attrs={'type': 'date'}),
         }
+      
+
+class StrategyParameters2Form(forms.ModelForm):
+    class Meta:
+        model = StrategyParameters2
+        fields = ['valorTK', 'startHour', 'endHour', 'fechaDesde', 'fechaHasta', 'tipoTK', 'stopLoss']
+        widgets = {
+                'fechaDesde': forms.DateInput(attrs={'type': 'date'}),
+                'fechaHasta': forms.DateInput(attrs={'type': 'date'}),
+        }
+

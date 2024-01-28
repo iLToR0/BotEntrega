@@ -15,3 +15,15 @@ class StrategyParameters(models.Model):
     fechaHasta = models.DateField()
     tipoTK = models.CharField(max_length=1, choices=[('P', 'Puntos'), ('R', 'Ratio')])
     # Agrega campos para otras variables de la estrategia
+
+class StrategyParameters2(models.Model):
+    valorTK = models.FloatField(
+        validators=[MinValueValidator(0), no_negativo]
+    )
+    startHour = models.TimeField()
+    endHour = models.TimeField()
+    fechaDesde = models.DateField()
+    fechaHasta = models.DateField()
+    stopLoss = models.FloatField(validators=[MinValueValidator(0), no_negativo])
+    tipoTK = models.CharField(max_length=1, choices=[('P', 'Puntos'), ('R', 'Ratio')])
+    # Agrega campos para otras variables de la estrategia

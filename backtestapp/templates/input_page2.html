@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>  <!-- Agrega jQuery -->
+    <script src="{% static 'javascript/input_page.js' %}"></script>
+    
+    <title>N&W TRADERS BACKTESTING</title>
+
+</head>
+
+<body>
+    <script src="{% static 'javascript/darkMode.js' %}"></script>
+    <a href="/" class="home-button">Volver al Home</a>
+
+    <div id="container" class="container">
+        <h1>Configuración De Estrategia</h1>
+        <form method="post" class="form-group" id="backtesting-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="tipoTK">Tipo De Take Profit:</label>
+                {{ form.tipoTK }}
+            </div>
+            <div class="form-group">
+                <label for="valorTK">Valor De Take Profit:</label>
+                {{ form.valorTK }}
+            </div>
+            <div class="form-group">
+                <label for="stopLoss">Valor De Stop Loss:</label>
+                {{ form.stopLoss }}
+            </div>
+            <div class="form-group">
+                <label for="startHour">Hora de Inicio: HH:MM</label>
+                {{ form.startHour }}
+            </div>
+            <div class="form-group">
+                <label for="endHour">Hora de Fin: HH:MM</label>
+                {{ form.endHour }}
+            </div>
+            <div class="form-group">
+                <label for="fechaDesde">Fecha Comienzo</label>
+                {{ form.fechaDesde }}
+            </div>
+            <div class="form-group">
+                <label for="fechaHasta">Fecha Final</label>
+                {{ form.fechaHasta }}
+            </div>
+            <div class="form-group">
+                <button type="submit" id="execute-button" class="btn btn-primary">Ejecutar BackTesting</button>
+            </div>
+
+        </form>
+        
+        <div class="overlay" id="processing-message" style="display: none;">
+            <div class="loader"></div>
+            <p class="processing-text" style="color: #fff;">Procesando BackTesting, por favor espera...</p>
+        </div>
+
+        <div id="error-message">{{ error_message }}</div>
+
+    </div>
+    <script>
+        // Cambia el valor predeterminado según tus necesidades
+        var fechaDesde = "2023-09-01";
+        var fechaHasta = "2023-09-14";
+        var startHour = "11:00";
+        var endHour = "18:00";
+
+        $(document).ready(function() {
+            // Asigna el valor predeterminado al campo fechaDesde
+            $("#id_fechaDesde").val(fechaDesde);
+            $("#id_fechaHasta").val(fechaHasta);
+            $("#id_startHour").val(startHour);
+            $("#id_endHour").val(endHour);
+        });
+    </script>
+
+</body>
+
+</html>

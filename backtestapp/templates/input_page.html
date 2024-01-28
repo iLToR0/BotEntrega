@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{% static 'javascript/input_page.js' %}"></script>
     <title>N&W TRADERS BACKTESTING</title>
 
@@ -35,11 +36,11 @@
                 {{ form.endHour }}
             </div>
             <div class="form-group">
-                <label for="fechaDesde">Fecha Desde: 2023-05-01</label>
+                <label for="fechaDesde">Fecha Comienzo</label>
                 {{ form.fechaDesde }}
             </div>
             <div class="form-group">
-                <label for="fechaHasta">Fecha Hasta: 2023-09-30</label>
+                <label for="fechaHasta">Fecha Final</label>
                 {{ form.fechaHasta }}
             </div>
             <div class="form-group">
@@ -56,6 +57,21 @@
         <div id="error-message">{{ error_message }}</div>
 
     </div>
+    <script>
+        // Cambia el valor predeterminado según tus necesidades
+        var fechaDesde = "2023-05-01";
+        var fechaHasta = "2023-09-30";
+        var startHour = "10:30";
+        var endHour = "17:00";
+
+        $(document).ready(function() {
+            // Asigna el valor predeterminado al campo fechaDesde
+            $("#id_fechaDesde").val(fechaDesde);
+            $("#id_fechaHasta").val(fechaHasta);
+            $("#id_startHour").val(startHour);
+            $("#id_endHour").val(endHour);
+        });
+    </script>
 
 </body>
 
