@@ -1,6 +1,8 @@
 import backtrader as bt
+from backtestapp.exeptions.NoTradesExeption import NoTradesException
 from backtestapp.services.BackTestAnalyzer import BacktestAnalyzer
 import pandas as pd
+from django.shortcuts import render
 
 
 
@@ -35,6 +37,10 @@ class BacktestManager2:
         thestrat = thestrats[0]
 
         # Procesar los resultados
+        total_trades = thestrat.analyzers.misanalisis.get_analysis()['total']['total']
+        if total_trades == 0:
+            # Manejar la excepción aquí o devolver resultados predeterminados
+            raise NoTradesException('Por favor, cambie los valores e intente nuevamente')
 
         results = BacktestAnalyzer.process_backtest_results(thestrat)
         

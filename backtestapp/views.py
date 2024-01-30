@@ -1,4 +1,6 @@
+import logging
 from django.shortcuts import render
+from backtestapp.exeptions.NoTradesExeption import NoTradesException
 from backtestapp.services.BackTestManager import BacktestManager
 from backtestapp.services.Backtestmanager2 import BacktestManager2
 from .strategy import ThreeCandlePatternStrategy
@@ -35,21 +37,19 @@ def input_page2(request):
     if request.method == 'POST':
         form = StrategyParameters2Form(request.POST)
         if form.is_valid():
-            #archivo_csv = os.path.abspath('132Fin.csv')
-            #indicatorResults = os.path.abspath('results.csv')
-            #print("Length of:", len(archivo_csv))
-            
-            
+            try:
+ 
+                strategy = MauricioStrategy
 
+                backtest_manager = BacktestManager2(form, strategy)
+                
+                results = backtest_manager.run_backtest()
+                return render(request, 'results.html',results)
             
-            #print("Longitud de los datos leídos:", len(archivo_csv))
-            #print("Longitud de los datos leídos:", len(indicatorResults))
-            strategy = MauricioStrategy
+            except NoTradesException as e:
 
-            backtest_manager = BacktestManager2(form, strategy)
-            
-            results = backtest_manager.run_backtest()
-            return render(request, 'results2.html',results)
+                # Manejar la excepción y renderizar la plantilla 'exception.html'
+                return render(request, 'exception.html', {'error_message': str(e)})
     else:
         form = StrategyParameters2Form()
     return render(request, 'input_page2.html', {'form': form})
