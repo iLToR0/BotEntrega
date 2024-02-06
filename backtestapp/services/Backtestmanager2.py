@@ -47,12 +47,12 @@ class BacktestManager2:
         return results
 
     def _get_data_feed(self, fecha_desde,fecha_hasta,time_frame):
-        archivoCSV = 'DataCompletaYear2min.csv'
+        archivoCSV = 'DataFin.csv'
         df = pd.read_csv(archivoCSV, sep=';', header=None, names=['datetime', 'open', 'high', 'low', 'close', 'volume'],skip_blank_lines=True)
         df = df.dropna()
         
         # Añadir milisegundos a la columna 'datetime'
-        df['datetime'] = pd.to_datetime(df['datetime'], format='%d/%m/%Y %H:%M:%S')
+        df['datetime'] = pd.to_datetime(df['datetime'], format='%Y%m%d %H%M%S')
 
         # Establecer la columna 'datetime' como índice de tiempo
         df.set_index('datetime', inplace=True)
@@ -77,11 +77,11 @@ class BacktestManager2:
         
 
     def _get_indicator_DF(self):
-        resultados = 'resultsIndicator.csv'
+        resultados = 'results.csv'
         indicatorResults = pd.read_csv(resultados, sep=',', header=None, names=[
                         'datetime', 'fundtrend', 'bullbearline', 'bankerentry', 'color'])
         
-        indicatorResults['datetime'] = pd.to_datetime(indicatorResults['datetime'], format="%Y-%m-%d %H:%M:%S")
+        indicatorResults['datetime'] = pd.to_datetime(indicatorResults['datetime'], format="%Y%m%d %H%M%S")
         return indicatorResults
 
     def add_strategy(self, strategy, cerebro,indicatorResults):
